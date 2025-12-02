@@ -17,7 +17,7 @@ public class RegistrationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long studentId;
+    private Long registrationId;
 
     @ManyToOne
     @JoinColumn(name = "student", nullable = false)

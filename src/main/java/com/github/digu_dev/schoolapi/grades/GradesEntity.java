@@ -19,6 +19,6 @@ public class GradesEntity {
     private Double grade;
 
     @ManyToOne
-    @JoinColumn(name = "registration_id", nullable = false)
+    @JoinColumn(name = "registration", nullable = false)
     private RegistrationEntity registration;
 }

@@ -23,7 +23,7 @@ public class GradesController {
     public ResponseEntity<Object> save(@RequestBody GradesDTO gradesDTO){
         try{
             GradesEntity gradesEntity = gradesDTO.mappedByGradesEntity();
-            gradesService.save(gradesEntity);
+            gradesService.save(gradesDTO);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(gradesEntity.getId()).toUri();
 
