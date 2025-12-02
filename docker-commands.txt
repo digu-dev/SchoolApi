@@ -1,0 +1,7 @@
+docker network create school-network
+
+# Rodar container Postgre na versão 16.3
+docker run --name schooldb -e POSTGRES_PASSWORD=1234 -e POSTGRES_USER=admin -e POSTGRES_DB=school -p 5432:5432 -d --network school-network postgres:16.3
+
+# Rodar Pgadmin 4
+docker run --name pgadmin4 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=admin -p 15432:80 -d --network school-network dpage/pgadmin4:9.9
