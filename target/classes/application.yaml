@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: schoolapi
+  datasource:
+    url: jdbc:postgresql://localhost:5432/school
+    username: admin
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.format_sql: true
