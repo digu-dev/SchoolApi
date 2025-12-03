@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -24,11 +25,25 @@ public class TeacherService {
         return teacherRepository.save(teacher);
     }
 
-    public TeacherEntity findById(UUID id){
-        return teacherRepository.findById(id).orElseThrow( () -> new EntityNotFoundException("Teacher not found!"));
+    public Optional<TeacherEntity> findById(UUID id){
+        return teacherRepository.findById(id);
     }
 
     public List<TeacherEntity> findAll(){
         return teacherRepository.findAll();
+    }
+
+    public void updateById (TeacherEntity teacher){
+        if (teacher.getId() == null){
+            throw new IllegalArgumentException("Teacher not found or not saved!");
+        }
+        teacherRepository.save(teacher);
+    }
+
+    public void delete (TeacherEntity teacher){
+        if (teacher.getId() == null){
+            throw new IllegalArgumentException("Teacher not found or not saved!");
+        }
+        teacherRepository.delete(teacher);
     }
 }
