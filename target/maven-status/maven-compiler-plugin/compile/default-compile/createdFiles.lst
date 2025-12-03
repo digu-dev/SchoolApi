@@ -11,6 +11,7 @@ com\github\digu_dev\schoolapi\grades\GradesController.class
 com\github\digu_dev\schoolapi\student\StudentEntity.class
 com\github\digu_dev\schoolapi\grades\GradesRepository.class
 com\github\digu_dev\schoolapi\grades\GradesEntity.class
+com\github\digu_dev\schoolapi\registration\RegistrationRepository.class
 com\github\digu_dev\schoolapi\teacher\TeacherEntity.class
 com\github\digu_dev\schoolapi\exceptions\DuplicatedRegisterException.class
 com\github\digu_dev\schoolapi\registration\RegistrationEntity.class

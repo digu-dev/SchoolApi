@@ -12,6 +12,7 @@ import java.util.UUID;
 @Entity
 @Data
 @ToString
+@Table(name = "Teacher")
 public class TeacherEntity {
 
     @Id

@@ -8,6 +8,7 @@ import lombok.ToString;
 @Entity
 @Data
 @ToString
+@Table(name = "Grades")
 public class GradesEntity {
 
     @Id

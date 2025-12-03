@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @ToString
+@Table(name = "ClassRoom")
 public class ClassRoomEntity {
 
     @Id

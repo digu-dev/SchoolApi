@@ -10,6 +10,7 @@ import lombok.ToString;
 @Entity
 @Data
 @ToString
+@Table(name = "Class")
 public class ClassEntity {
 
     @Id

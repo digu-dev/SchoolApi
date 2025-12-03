@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 @Data
 @ToString
+@Table(name = "Registration")
 public class RegistrationEntity {
 
     @Id
