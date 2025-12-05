@@ -39,6 +39,6 @@ public class SubjectService {
         if (subject.getId() == null){
             throw new IllegalArgumentException("Subject Id not found");
         }
-        subjectRepository.save(subject);
+        subjectRepository.delete(subject);
     }
 }
