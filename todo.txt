@@ -1,0 +1,5 @@
+CRUD - Student
+CRUD - Class
+CRUD - Registration
+CRUD - Grades
+melhorar os metodos get de todos os cruds
