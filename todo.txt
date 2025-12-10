@@ -1,5 +1,5 @@
-CRUD - Student -> faltam os metodos get, put e delete;
-CRUD - Class
-CRUD - Registration
+CRUD - Student -> feito
+CRUD - Class -> feito
+CRUD - Registration ->
 CRUD - Grades
 melhorar os metodos get de todos os cruds

@@ -43,8 +43,7 @@ public class TeacherController {
             TeacherEntity teacher = teacherEntityOptional.get();
             TeacherDTO teacherDTO = new TeacherDTO(teacher.getId(),
                     teacher.getName(),
-                    teacher.getAge(),
-                    teacher.getClassesPerWeek());
+                    teacher.getAge());
             return ResponseEntity.ok(teacherDTO);
         }else {
             return ResponseEntity.notFound().build();
@@ -71,8 +70,6 @@ public class TeacherController {
             var teacher = teacherEntityOptionalOptional.get();
             teacher.setName(dto.name());
             teacher.setAge(dto.age());
-            teacher.setClassesPerWeek(dto.classesPerWeek());
-
             teacherService.updateById(teacher);
 
             return ResponseEntity.noContent().build();

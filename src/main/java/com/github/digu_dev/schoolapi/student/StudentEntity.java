@@ -1,5 +1,6 @@
 package com.github.digu_dev.schoolapi.student;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.digu_dev.schoolapi.classroom.ClassRoomEntity;
 import com.github.digu_dev.schoolapi.enums.Grade;
 import com.github.digu_dev.schoolapi.enums.Period;
@@ -41,5 +42,6 @@ public class StudentEntity {
 
 
     @OneToMany(mappedBy = "student")
+    @JsonIgnore
     private List<RegistrationEntity> registrations;
 }

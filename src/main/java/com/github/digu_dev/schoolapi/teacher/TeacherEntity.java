@@ -1,5 +1,6 @@
 package com.github.digu_dev.schoolapi.teacher;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.digu_dev.schoolapi.classes.ClassEntity;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -27,8 +28,7 @@ public class TeacherEntity {
 
     private LocalDate birthDate;
 
-    private Integer classesPerWeek;
-
     @OneToMany(mappedBy = "teacher")
+    @JsonIgnore
     private List<ClassEntity> classes;
 }

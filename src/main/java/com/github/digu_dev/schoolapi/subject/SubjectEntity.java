@@ -1,5 +1,6 @@
 package com.github.digu_dev.schoolapi.subject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.digu_dev.schoolapi.classes.ClassEntity;
 import com.github.digu_dev.schoolapi.registration.RegistrationEntity;
 import jakarta.persistence.*;
@@ -21,8 +22,10 @@ public class SubjectEntity {
     private String name;
 
     @OneToMany(mappedBy = "subject")
+    @JsonIgnore
     private List<RegistrationEntity> registration;
 
     @OneToMany(mappedBy = "subject")
+    @JsonIgnore
     private List<ClassEntity> classes;
 }
