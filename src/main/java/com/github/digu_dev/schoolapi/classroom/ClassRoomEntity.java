@@ -23,11 +23,11 @@ public class ClassRoomEntity {
     @Enumerated
     private Period period;
 
-    @OneToMany(mappedBy = "classRoom")
+    @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<RegistrationEntity> registrations;
 
-    @OneToMany(mappedBy = "classRoom")
+    @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<ClassEntity> classes;
 }

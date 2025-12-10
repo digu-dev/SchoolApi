@@ -1,5 +1,6 @@
 package com.github.digu_dev.schoolapi.registration;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.digu_dev.schoolapi.classroom.ClassRoomEntity;
 import com.github.digu_dev.schoolapi.grades.GradesEntity;
 import com.github.digu_dev.schoolapi.student.StudentEntity;
@@ -20,19 +21,21 @@ public class RegistrationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long registrationId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "student", nullable = false)
+    
     private StudentEntity student;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject", nullable = false)
     private SubjectEntity subject;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "classRoom", nullable = false)
     private ClassRoomEntity classRoom;
 
     @OneToMany(mappedBy = "registration", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<GradesEntity> grades;
 }

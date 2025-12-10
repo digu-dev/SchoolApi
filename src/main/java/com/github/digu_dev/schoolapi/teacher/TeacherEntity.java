@@ -28,7 +28,7 @@ public class TeacherEntity {
 
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<ClassEntity> classes;
 }

@@ -36,12 +36,12 @@ public class StudentEntity {
     @Enumerated(EnumType.STRING)
     private Period period;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "classroom")
     private ClassRoomEntity classRoom;
 
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<RegistrationEntity> registrations;
 }
