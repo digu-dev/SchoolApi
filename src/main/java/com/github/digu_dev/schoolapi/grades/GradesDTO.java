@@ -5,8 +5,7 @@ import com.github.digu_dev.schoolapi.registration.RegistrationEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record GradesDTO(@NotNull
-                        Long id,
+public record GradesDTO(Long id,
                         @NotNull(message = "Required field!")
                         Integer bimester,
                         @NotNull(message = "Required field!")

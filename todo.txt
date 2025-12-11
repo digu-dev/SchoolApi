@@ -1,5 +1,5 @@
 CRUD - Student -> feito
 CRUD - Class -> feito
-CRUD - Registration ->
+CRUD - Registration -> feito
 CRUD - Grades
 melhorar os metodos get de todos os cruds
