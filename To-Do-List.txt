@@ -1,0 +1,4 @@
+fazer DTOs
+mapear os DTOs
+fazer o service
+fazer controller
