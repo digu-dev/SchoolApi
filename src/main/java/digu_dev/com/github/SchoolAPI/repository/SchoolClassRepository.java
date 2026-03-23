@@ -11,8 +11,8 @@ import digu_dev.com.github.SchoolAPI.entity.SchoolClass;
 @Repository
 public interface SchoolClassRepository extends JpaRepository<SchoolClass, Long> {
 
-    @Query("SELECT DISTINCT sc FROM SchoolClass sc LEFT JOIN FETCH sc.students WHERE sc.code = :code")
-    Optional<SchoolClass> findByCodeWithStudents(String code);
+    @Query("SELECT DISTINCT sc FROM SchoolClass sc LEFT JOIN FETCH sc.students WHERE sc.classCode = :classCode")
+    Optional<SchoolClass> findByCodeWithStudents(String classCode);
 
 
 }
