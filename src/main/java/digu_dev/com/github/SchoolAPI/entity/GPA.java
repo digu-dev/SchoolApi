@@ -45,4 +45,6 @@ public class GPA {
     @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
 
+    private StatusEnum status;
+
 }
