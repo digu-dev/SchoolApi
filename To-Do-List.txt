@@ -1,2 +1,3 @@
+usar validação para os dtos
 fazer controller
 fazer Exception Handler
