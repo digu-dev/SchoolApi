@@ -5,26 +5,28 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import digu_dev.com.github.SchoolAPI.dto.DepartmentDto;
 import digu_dev.com.github.SchoolAPI.entity.Department;
 import digu_dev.com.github.SchoolAPI.repository.DepartmentRepository;
-import jakarta.transaction.Transactional;
+
 
 @Service
-@Transactional(rollbackOn = Exception.class)
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class DepartmentService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    
+    @Transactional(rollbackFor = Exception.class)
     public Department create (DepartmentDto dto){
         Department department = new Department();
         department.setName(dto.name());
         return departmentRepository.save(department);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void update(Department department){
         if (department.getId() == null) {
             throw new IllegalArgumentException("Department ID cannot be null for update.");
@@ -33,6 +35,7 @@ public class DepartmentService {
 
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void delete(Department department){
         if(department.getId() == null) {
             throw new IllegalArgumentException("Department ID cannot be null for deletion.");

@@ -15,6 +15,10 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
     @Query("SELECT DISTINCT t FROM Teacher t JOIN FETCH t.subjects WHERE t.id = :id")
     Optional<Teacher> findByIdWithSubjects(Long id);
 
-    List<Teacher> findByDepartmentId(Long departmentId);
+    @Query("SELECT DISTINCT t FROM Teacher t JOIN FETCH t.department WHERE t.id = :id")
+    Optional<Teacher> findByIdWithDepartment(Long id);
+
+    @Query("SELECT DISTINCT t FROM Teacher t JOIN FETCH t.department WHERE t.department.name = :departmentName")
+    List<Teacher> findByDepartmentName(String departmentName);
 
 }

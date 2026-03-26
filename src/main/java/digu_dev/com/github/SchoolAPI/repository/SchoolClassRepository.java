@@ -14,5 +14,6 @@ public interface SchoolClassRepository extends JpaRepository<SchoolClass, Long> 
     @Query("SELECT DISTINCT sc FROM SchoolClass sc LEFT JOIN FETCH sc.students WHERE sc.classCode = :classCode")
     Optional<SchoolClass> findByCodeWithStudents(String classCode);
 
-
+    @Query("SELECT sc FROM SchoolClass sc WHERE sc.classCode = :classCode")
+    Optional<SchoolClass> findByClassCode(String classCode);
 }
