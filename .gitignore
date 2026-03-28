@@ -3,6 +3,11 @@ target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+META-INF/
+
+To-Do-List.txt
+mvnw
+mvnw.cmd
 
 ### STS ###
 .apt_generated
@@ -31,4 +36,4 @@ build/
 
 ### VS Code ###
 .vscode/
-.To-Do-List.txt
+
