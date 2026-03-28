@@ -10,4 +10,11 @@ public record DepartmentDto(Long id, @NotBlank @Size(max = 100) String name) {
         this(department.getId(), department.getName());
     }
 
+    public Department toEntity() {
+        Department department = new Department();
+        department.setId(this.id);
+        department.setName(this.name);
+        return department;
+    }
+
 }
