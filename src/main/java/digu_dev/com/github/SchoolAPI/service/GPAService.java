@@ -19,21 +19,27 @@ public class GPAService {
     GPARepository gpaRepository;
 
 
+    public Double calculateFinalGrade(Double g1, Double g2, Double g3) {
+        if (g1 == null || g2 == null || g3 == null) {
+            throw new IllegalArgumentException("All grade components must be provided.");
+        }
+        return g1 + g2 + g3;
+    }
+
     @Transactional(rollbackFor=Exception.class)
-    public GPADto createGPA(Long id, Double g1, Double g2, Double g3) {
-        GPA entity = gpaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("grade record not found for id: " + id));
+    public GPA createGPA(GPADto dto){ 
+
         
-        entity.setGrade1(g1);
-        entity.setGrade2(g2);
-        entity.setGrade3(g3);
+        GPA gpa = new GPA();
+        gpa.setGrade1(dto.g1());
+        gpa.setGrade2(dto.g2());
+        gpa.setGrade3(dto.g3());
+        gpa.setFinalGrade(calculateFinalGrade(dto.g1(), dto.g2(), dto.g3()));
+        gpa.setStudent(dto.student());
+        gpa.setSubject(dto.subject());
+        gpa.setStatus(dto.status());
+        return gpaRepository.save(gpa);
         
-        // A média pode ser calculada aqui ou num método dentro da própria Entity
-        Double finalGrade = (g1 + g2 + g3);
-        entity.setFinalGrade(finalGrade);
-        
-        entity = gpaRepository.save(entity);
-        return new GPADto(entity);
     }
 
     @Transactional(rollbackFor=Exception.class)

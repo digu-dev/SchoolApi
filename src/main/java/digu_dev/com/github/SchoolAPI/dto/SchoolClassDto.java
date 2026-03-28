@@ -6,8 +6,11 @@ import jakarta.validation.constraints.Size;
 
 public record SchoolClassDto(Long id, @NotBlank @Size(max = 10) String classCode) {
 
-    public SchoolClassDto(SchoolClass schoolClass) {
-        this(schoolClass.getId(), schoolClass.getClassCode());
+    public SchoolClass toEntity() {
+        SchoolClass schoolClass = new SchoolClass();
+        schoolClass.setId(this.id);
+        schoolClass.setClassCode(this.classCode);
+        return schoolClass;
     }
 
 }

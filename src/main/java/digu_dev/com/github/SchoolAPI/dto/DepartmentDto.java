@@ -6,9 +6,6 @@ import jakarta.validation.constraints.Size;
 
 public record DepartmentDto(Long id, @NotBlank @Size(max = 100) String name) {
 
-    public DepartmentDto(Department department) {
-        this(department.getId(), department.getName());
-    }
 
     public Department toEntity() {
         Department department = new Department();

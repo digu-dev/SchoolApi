@@ -12,11 +12,12 @@ public record StudentDto(Long id,
     @NotBlank @Size(max = 10) 
     String schoolClassCode) {
 
-    public StudentDto(Student student) {
-        this(student.getId(), 
-        student.getName(), 
-        student.getRegistration(), 
-        student.getSchoolClass().getClassCode());
+    public Student toEntity() {
+        Student student = new Student();
+        student.setId(this.id);
+        student.setName(this.name);
+        student.setRegistration(this.registration);
+        return student;
     }
 
 }
