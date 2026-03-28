@@ -4,8 +4,17 @@ import java.util.List;
 
 import digu_dev.com.github.SchoolAPI.entity.Subject;
 import digu_dev.com.github.SchoolAPI.entity.Teacher;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
-public record TeacherDto(Long id, String name, String email, List<String> subject) {
+public record TeacherDto(Long id, 
+    @NotBlank @Size(max = 100)
+    String name, 
+    @NotBlank @Size(max = 100)
+    String email, 
+    @NotEmpty
+    List<String> subject) {
 
     public TeacherDto(Teacher teacher) {
         this(teacher.getId(),
