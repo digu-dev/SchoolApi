@@ -45,7 +45,7 @@ class GPAControllerTest {
         gpa.setGrade2(g2);
         gpa.setGrade3(g3);
         gpa.setFinalGrade(finalGrade);
-        gpa.setStatus(StatusEnum.APROVED);
+        gpa.setStatus(StatusEnum.APPROVED);
         gpa.setStudent(null);
         gpa.setSubject(null);
         return gpa;
@@ -73,7 +73,7 @@ class GPAControllerTest {
                   "finalGrade": 85.0,
                   "subject": {"id": 1, "name": "Math"},
                   "student": {"id": 1, "name": "Alice"},
-                  "status": "APROVED"
+                  "status": "APPROVED"
                 }
                 """;
 
@@ -99,7 +99,7 @@ class GPAControllerTest {
                   "finalGrade": 85.0,
                   "subject": {"id": 1, "name": "Math"},
                   "student": {"id": 1, "name": "Alice"},
-                  "status": "APROVED"
+                  "status": "APPROVED"
                 }
                 """;
 
@@ -121,7 +121,7 @@ class GPAControllerTest {
                   "finalGrade": 85.0,
                   "subject": {"id": 1, "name": "Math"},
                   "student": {"id": 1, "name": "Alice"},
-                  "status": "APROVED"
+                  "status": "APPROVED"
                 }
                 """;
 

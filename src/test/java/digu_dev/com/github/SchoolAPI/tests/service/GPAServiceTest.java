@@ -77,7 +77,7 @@ class GPAServiceTest {
         subject.setId(1L);
         subject.setName("Math");
 
-        GPADto dto = new GPADto(null, 25.0, 25.0, 35.0, 85.0, subject, student, StatusEnum.APROVED);
+        GPADto dto = new GPADto(null, 25.0, 25.0, 35.0, 85.0, subject, student, StatusEnum.APPROVED);
 
         GPA saved = new GPA();
         saved.setId(1L);
@@ -87,7 +87,7 @@ class GPAServiceTest {
         saved.setFinalGrade(85.0);
         saved.setStudent(student);
         saved.setSubject(subject);
-        saved.setStatus(StatusEnum.APROVED);
+        saved.setStatus(StatusEnum.APPROVED);
 
         when(gpaRepository.save(any(GPA.class))).thenReturn(saved);
 
@@ -99,7 +99,7 @@ class GPAServiceTest {
         assertThat(result.getGrade2()).isEqualTo(25.0);
         assertThat(result.getGrade3()).isEqualTo(35.0);
         assertThat(result.getFinalGrade()).isEqualTo(85.0);
-        assertThat(result.getStatus()).isEqualTo(StatusEnum.APROVED);
+        assertThat(result.getStatus()).isEqualTo(StatusEnum.APPROVED);
         verify(gpaRepository).save(any(GPA.class));
     }
 
