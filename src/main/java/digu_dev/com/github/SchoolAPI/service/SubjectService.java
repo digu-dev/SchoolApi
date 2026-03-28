@@ -53,6 +53,8 @@ public class SubjectService {
         return subjectRepository.findByNameWithTeachers(name);
     }
 
-    
+    public Optional<Subject> findByName(String name) {
+        return subjectRepository.findByName(name);
+    }
 
 }
