@@ -1,4 +1,4 @@
-package digu_dev.com.github.SchoolAPI;
+package digu_dev.com.github.SchoolAPI.tests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
