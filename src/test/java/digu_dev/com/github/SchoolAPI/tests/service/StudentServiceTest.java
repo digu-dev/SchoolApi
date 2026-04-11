@@ -14,6 +14,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import digu_dev.com.github.SchoolAPI.dto.StudentDto;
 import digu_dev.com.github.SchoolAPI.entity.SchoolClass;
@@ -22,6 +24,8 @@ import digu_dev.com.github.SchoolAPI.repository.SchoolClassRepository;
 import digu_dev.com.github.SchoolAPI.repository.StudentRepository;
 import digu_dev.com.github.SchoolAPI.service.StudentService;
 
+@DataJpaTest
+@ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
 class StudentServiceTest {
 
