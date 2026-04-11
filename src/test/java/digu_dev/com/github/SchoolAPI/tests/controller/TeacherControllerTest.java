@@ -17,10 +17,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -33,8 +31,6 @@ import digu_dev.com.github.SchoolAPI.entity.Subject;
 import digu_dev.com.github.SchoolAPI.entity.Teacher;
 import digu_dev.com.github.SchoolAPI.service.TeacherService;
 
-@DataJpaTest
-@ActiveProfiles("test")
 @WebMvcTest(TeacherController.class)
 class TeacherControllerTest {
 
