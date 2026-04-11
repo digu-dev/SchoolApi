@@ -38,7 +38,6 @@ A aplicação foi construída seguindo as melhores práticas de mercado:
 | **GET** | `/departments/name?name=...` | Busca um departamento específico por nome. |
 | **POST** | `/teachers` | Cadastra um novo professor vinculado a um departamento. |
 | **GET** | `/students/report/{id}` | Gera o boletim detalhado com cálculo automático de média. |
-| **PATCH** | `/gpa/{id}` | Atualiza notas de um aluno em uma disciplina específica. |
 
 ---
 
