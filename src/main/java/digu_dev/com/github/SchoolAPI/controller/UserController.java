@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,8 +33,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<Object> createLogin(@RequestBody UserDto dto) {
         try {
-            UserEntity createdUser = dto.toEntity();
-            userService.create(dto);
+            UserEntity createdUser = userService.create(dto);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                     .path("/{id}")
                     .buildAndExpand(createdUser.getId()).toUri();
@@ -84,7 +84,8 @@ public class UserController {
     }
 
     
-    @PreAuthorize("hasRole('ADMIN', 'USER')")
+    @GetMapping("/{username}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<UserDto> findLoginByUsername(@PathVariable("username") String username) {
         Optional<UserEntity> existingUser = userService.findByUsername(username);
         if(existingUser.isPresent()){
