@@ -1,10 +1,9 @@
 package digu_dev.com.github.SchoolAPI.config;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -24,11 +23,10 @@ public class SecurityConfig {
     http.httpBasic(withDefaults());
     http.formLogin(withDefaults());
        http.authorizeHttpRequests((requests) -> requests
-            .requestMatchers("/students/**", "/teachers/**", "/subject/**", "/school-classes/**").hasAnyRole("ADMIN", "TEACHER")
-            .requestMatchers("/gpa/**").hasAnyRole("TEACHER")
             .requestMatchers("/login/**").permitAll()
             .requestMatchers(HttpMethod.GET, "/users/**", "/users").permitAll()
             .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
+            .anyRequest().authenticated()
         );
        
        return http.build();

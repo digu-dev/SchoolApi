@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import digu_dev.com.github.SchoolAPI.repository.TeacherRepository;
 
 @Service
 @Transactional(readOnly = true, rollbackFor = Exception.class)
+@PreAuthorize("hasRole('ADMIN')")
 public class TeacherService {
 
     @Autowired
