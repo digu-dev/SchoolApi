@@ -79,17 +79,4 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
-    @ExceptionHandler(UnauthorizedException.class)
-    public ResponseEntity<StandardError> handleUnauthorized(UnauthorizedException e, HttpServletRequest request) {
-        HttpStatus status = HttpStatus.FORBIDDEN;
-        StandardError err = new StandardError(
-                Instant.now(),
-                status.value(),
-                "Forbidden",
-                e.getMessage(),
-                request.getRequestURI()
-        );
-        return ResponseEntity.status(status).body(err);
-    }
-
 }

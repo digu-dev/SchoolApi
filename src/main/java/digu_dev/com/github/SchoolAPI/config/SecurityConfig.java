@@ -1,12 +1,13 @@
 package digu_dev.com.github.SchoolAPI.config;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -20,20 +21,19 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain defaultFilterChain(HttpSecurity http) throws Exception {
     http.csrf(csrf -> csrf.disable());    
-    http.httpBasic(Customizer.withDefaults());
-    http.formLogin(configurer -> configurer.loginPage("/login").permitAll());
-
-    http.authorizeHttpRequests(authorize ->{
-        authorize.requestMatchers("/login/**").permitAll();
-        authorize.requestMatchers(HttpMethod.POST, "/users/**").permitAll();
-        authorize.requestMatchers("/students/**", "/teachers/**", "/subject/**", "/school-classes/**").hasAnyRole("ADMIN");
-        authorize.requestMatchers("/gpa/**").hasAnyRole("TEACHER");
-        authorize.anyRequest().authenticated();
-    });
-    
-    return http.build();
+    http.httpBasic(withDefaults());
+    http.formLogin(withDefaults());
+       http.authorizeHttpRequests((requests) -> requests
+            .requestMatchers("/students/**", "/teachers/**", "/subject/**", "/school-classes/**").hasAnyRole("ADMIN", "TEACHER")
+            .requestMatchers("/gpa/**").hasAnyRole("TEACHER")
+            .requestMatchers("/login/**").permitAll()
+            .requestMatchers(HttpMethod.GET, "/users/**", "/users").permitAll()
+            .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
+        );
+       
+       return http.build();
     }
-
+    
     @Bean 
     public UserDetailsService userDetailsService(UserService userService){
         return new CustomUserDetailsService(userService);
@@ -41,7 +41,7 @@ public class SecurityConfig {
 
     @Bean 
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
 }

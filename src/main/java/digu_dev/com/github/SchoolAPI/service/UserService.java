@@ -1,5 +1,6 @@
 package digu_dev.com.github.SchoolAPI.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,10 @@ public class UserService {
 
     public Optional<UserEntity> findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public List<UserEntity> getUsers() {
+        return userRepository.findAll();
     }
 
 }

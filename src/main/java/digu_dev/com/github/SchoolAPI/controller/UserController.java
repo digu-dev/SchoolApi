@@ -1,11 +1,12 @@
 package digu_dev.com.github.SchoolAPI.controller;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,16 +20,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import digu_dev.com.github.SchoolAPI.dto.UserDto;
 import digu_dev.com.github.SchoolAPI.entity.UserEntity;
 import digu_dev.com.github.SchoolAPI.exception.ResourceAlreadyExistsException;
-import digu_dev.com.github.SchoolAPI.exception.UnauthorizedException;
 import digu_dev.com.github.SchoolAPI.service.UserService;
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/users")
-@RequiredArgsConstructor
+
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    UserService userService;
 
     @PostMapping
     public ResponseEntity<Object> createLogin(@RequestBody UserDto dto) {
@@ -42,8 +42,6 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (ResourceAlreadyExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        }catch (UnauthorizedException e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }
     }
 
@@ -67,8 +65,6 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }catch (ResourceAlreadyExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        }catch (UnauthorizedException e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }
     }
 
@@ -85,7 +81,6 @@ public class UserController {
 
     
     @GetMapping("/{username}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<UserDto> findLoginByUsername(@PathVariable("username") String username) {
         Optional<UserEntity> existingUser = userService.findByUsername(username);
         if(existingUser.isPresent()){
@@ -98,6 +93,17 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping
+    public ResponseEntity<List<UserEntity>> getUsers() {
+        List<UserEntity> users = userService.getUsers();
+        if(users.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.ok(users); 
+        }  
+    }
+
 
 }
 
