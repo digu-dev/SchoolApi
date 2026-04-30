@@ -1,0 +1,7 @@
+services:
+  schooldb:  # This name must match the host in your connection string
+    image: postgres:16.3
+    environment:
+      POSTGRES_DB: schooldb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
