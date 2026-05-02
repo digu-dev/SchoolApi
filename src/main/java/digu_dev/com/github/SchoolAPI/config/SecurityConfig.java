@@ -23,7 +23,7 @@ public class SecurityConfig {
     http.httpBasic(withDefaults());
     http.formLogin(withDefaults());
        http.authorizeHttpRequests((requests) -> requests
-            .requestMatchers("/login/**").permitAll()
+            .requestMatchers("/login/**", "/swagger-ui/**").permitAll()
             .requestMatchers(HttpMethod.GET, "/users/**", "/users").permitAll()
             .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
             .anyRequest().authenticated()
