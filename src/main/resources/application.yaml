@@ -2,7 +2,8 @@ spring:
   application:
     name: SchoolAPI
   datasource:
-      url: jdbc:postgresql://schooldb:5432/school
+      url: jdbc:postgresql://localhost:5431/school # for local development
+      #url: jdbc:postgresql://schooldb:5432/school for docker
       username: admin
       password: 1234
       driver-class-name: org.postgresql.Driver
@@ -12,3 +13,8 @@ spring:
       ddl-auto: update
     properties:
       hibernate.format_sql: true
+  server:
+    servlet:
+      session:
+        timeout: 20m
+        

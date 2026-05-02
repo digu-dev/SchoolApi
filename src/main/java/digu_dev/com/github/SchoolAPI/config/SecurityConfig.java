@@ -19,11 +19,14 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain defaultFilterChain(HttpSecurity http) throws Exception {
+    //http.requiresChannel(channel -> channel.anyRequest().requiresSecure()); -> only for https and prod enviroments
+    /* //http.sessionManagement(smc -> smc.maximumSessions(1).maxSessionsPreventsLogin(true)); 
+    session management for single session per user, can be used for logout and session invalidation*/
     http.csrf(csrf -> csrf.disable());    
     http.httpBasic(withDefaults());
     http.formLogin(withDefaults());
        http.authorizeHttpRequests((requests) -> requests
-            .requestMatchers("/login/**", "/swagger-ui/**").permitAll()
+            .requestMatchers("/login/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
             .requestMatchers(HttpMethod.GET, "/users/**", "/users").permitAll()
             .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
             .anyRequest().authenticated()
