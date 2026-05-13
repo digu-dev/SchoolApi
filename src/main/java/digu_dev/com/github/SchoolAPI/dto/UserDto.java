@@ -1,5 +1,7 @@
 package digu_dev.com.github.SchoolAPI.dto;
 
+import java.util.List;
+
 import digu_dev.com.github.SchoolAPI.entity.UserEntity;
 import jakarta.validation.constraints.NotBlank;
 
@@ -16,7 +18,7 @@ public record UserDto(
             UserEntity user = new UserEntity();
             user.setUsername(this.username);
             user.setPassword(this.password);
-            user.setRole(this.role);
+            user.setRoles(List.of(this.role));
             return user;
         }
 

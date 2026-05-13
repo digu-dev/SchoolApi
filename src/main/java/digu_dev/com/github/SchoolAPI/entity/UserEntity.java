@@ -1,5 +1,7 @@
 package digu_dev.com.github.SchoolAPI.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +24,6 @@ public class UserEntity {
 
     private String password;
     
-    private String role;
+    private List<String> roles;;
 
 }

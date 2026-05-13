@@ -56,7 +56,7 @@ public class UserController {
             UserEntity user = existingUser.get();
             user.setUsername(dto.username());
             user.setPassword(dto.password());
-            user.setRole(dto.role());
+            user.setRoles(List.of(dto.role()));
             userService.update(user);
             return ResponseEntity.noContent().build();
         }
@@ -87,7 +87,7 @@ public class UserController {
             UserEntity user = existingUser.get();
             UserDto dto = new UserDto(user.getUsername(),
             user.getPassword(),
-            user.getRole());
+            user.getRoles().isEmpty() ? "" : user.getRoles().get(0));
             return ResponseEntity.ok(dto);
         }else{
             return ResponseEntity.notFound().build();
