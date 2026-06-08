@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: SchoolAPI
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5431/school}
+    username: ${DB_USERNAME:admin}
+    password: ${DB_PASSWORD:1234}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.format_sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8180/realms/school}
+          jwk-set-uri: ${KEYCLOAK_JWK_SET_URI:http://localhost:8180/realms/school/protocol/openid-connect/certs}

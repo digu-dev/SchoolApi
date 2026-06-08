@@ -1,0 +1,31 @@
+services:
+  schooldb:
+    image: postgres:16.3
+    container_name: schooldb
+    environment:
+      POSTGRES_DB: school
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5431:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.2
+    container_name: school-keycloak
+    command:
+      - start-dev
+      - --import-realm
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8180:8080"
+    volumes:
+      - ./backend/infra/keycloak/school-realm.json:/opt/keycloak/data/import/school-realm.json:ro
+    depends_on:
+      - schooldb
+
+volumes:
+  postgres-data:
